@@ -47,52 +47,63 @@ class qa_example_page
 
 	public function match_request($request)
 	{
-		return $request == 'example-plugin-page';
+		$parts=explode('/', $request);
+
+		return $parts[0]=='example-plugin-page';
+		// return $request == 'example-plugin-page';
+
 	}
 
 
 	public function process_request($request)
 	{
-		$qa_content = qa_content_prepare();
+		$parts=explode('/', $request);
+        $tag=$parts[0];
+  
+        $qa_content=qa_content_prepare();
+        $qa_content['title']='Edit the description for '.qa_html($tag);
+  
+        return $qa_content;
+		// $qa_content = qa_content_prepare();
 
-		$qa_content['title'] = qa_lang_html('example_page/page_title');
-		$qa_content['error'] = 'An example error';
-		$qa_content['custom'] = 'Some <b>custom html</b>';
+		// $qa_content['title'] = qa_lang_html('example_page/page_title');
+		// $qa_content['error'] = 'An example error';
+		// $qa_content['custom'] = 'Some <b>custom html</b>';
 
-		$qa_content['form'] = array(
-			'tags' => 'method="post" action="' . qa_self_html() . '"',
+		// $qa_content['form'] = array(
+		// 	'tags' => 'method="post" action="' . qa_self_html() . '"',
 
-			'style' => 'wide',
+		// 	'style' => 'wide',
 
-			'ok' => qa_post_text('okthen') ? 'You clicked OK then!' : null,
+		// 	'ok' => qa_post_text('okthen') ? 'You clicked OK then!' : null,
 
-			'title' => 'Form title',
+		// 	'title' => 'Form title',
 
-			'fields' => array(
-				'request' => array(
-					'label' => 'The request',
-					'tags' => 'name="request"',
-					'value' => qa_html($request),
-					'error' => qa_html('Another error'),
-				),
+		// 	'fields' => array(
+		// 		'request' => array(
+		// 			'label' => 'The request',
+		// 			'tags' => 'name="request"',
+		// 			'value' => qa_html($request),
+		// 			'error' => qa_html('Another error'),
+		// 		),
 
-			),
+		// 	),
 
-			'buttons' => array(
-				'ok' => array(
-					'tags' => 'name="okthen"',
-					'label' => 'OK then',
-					'value' => '1',
-				),
-			),
+		// 	'buttons' => array(
+		// 		'ok' => array(
+		// 			'tags' => 'name="okthen"',
+		// 			'label' => 'OK then',
+		// 			'value' => '1',
+		// 		),
+		// 	),
 
-			'hidden' => array(
-				'hiddenfield' => '1',
-			),
-		);
+		// 	'hidden' => array(
+		// 		'hiddenfield' => '1',
+		// 	),
+		// );
 
-		$qa_content['custom_2'] = '<p><br>More <i>custom html</i></p>';
+		// $qa_content['custom_2'] = '<p><br>More <i>custom html</i></p>';
 
-		return $qa_content;
+		// return $qa_content;
 	}
 }
