@@ -323,7 +323,7 @@ function qa_db_qs_selectspec($voteuserid, $sort, $start, $categoryslugs = null, 
 	}
 
 	$selectspec = qa_db_posts_basic_selectspec($voteuserid, $full);
-
+//found the position
 	$selectspec['source'] .=
 		" JOIN (SELECT postid FROM ^posts WHERE " .
 		qa_db_categoryslugs_sql_args($categoryslugs, $selectspec['arguments']) .

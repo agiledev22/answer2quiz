@@ -126,9 +126,9 @@ if (!$explicitqa && !$countslugs && qa_opt('show_custom_home')) {
 require_once QA_INCLUDE_DIR . 'app/q-list.php';
 
 qa_set_template('qa');
+
 $questions = qa_any_sort_and_dedupe(array_merge($questions1, $questions2));
 $pagesize = qa_opt('page_size_home');
-
 if ($countslugs) {
 	if (!isset($categoryid)) {
 		return include QA_INCLUDE_DIR . 'qa-page-not-found.php';
