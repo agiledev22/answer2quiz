@@ -21,5 +21,5 @@
 */
 
 return array(
-	'page_title' => 'Example plugin page (UK English)',
+	'page_title' => 'Manage Excel Page (UK English)',
 );

@@ -21,13 +21,13 @@
 */
 
 /*
-	Plugin Name: Example Page
+	Plugin Name: Manage By Excel
 	Plugin URI:
-	Plugin Description: Example of page plugin
+	Plugin Description: Upload Excel File To Update Forum Permission
 	Plugin Version: 1.1
-	Plugin Date: 2011-12-06
+	Plugin Date: 2021-12-06
 	Plugin Author: Question2Answer
-	Plugin Author URI: http://www.question2answer.org/
+	Plugin Author URI: Aleks
 	Plugin License: GPLv2
 	Plugin Minimum Question2Answer Version: 1.5
 	Plugin Update Check URI:
@@ -40,5 +40,5 @@ if (!defined('QA_VERSION')) { // don't allow this page to be requested directly 
 }
 
 
-qa_register_plugin_module('page', 'qa-example-page.php', 'qa_example_page', 'Example Page');
-qa_register_plugin_phrases('qa-example-lang-*.php', 'example_page');
+qa_register_plugin_module('page', 'qa-excel-page.php', 'qa_excel_page', 'Excel Page');
+qa_register_plugin_phrases('qa-excel-lang-*.php', 'excel_page');

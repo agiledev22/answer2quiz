@@ -1,10 +1,10 @@
 {
-	"name": "Example Page",
-	"description": "Example of a page plugin",
+	"name": "Manage Excel Page",
+	"description": "Manage Excel plugin",
 	"version": "1.1",
-	"date": "2011-12-06",
+	"date": "2021-12-06",
 	"author": "Question2Answer",
-	"author_uri": "http://www.question2answer.org",
+	"author_uri": "",
 	"license": "GPLv2",
 	"min_q2a": "1.5",
 	"load_order": "after_db_init"

@@ -48,7 +48,7 @@ function qa_db_calc_passcheck($password, $salt)
  * @param string $ip
  * @return string
  */
-function qa_db_user_create($email, $password, $handle, $level, $ip, $orgid=null)
+function qa_db_user_create($email, $password, $handle, $level, $ip)
 {
 	require_once QA_INCLUDE_DIR . 'util/string.php';
 
@@ -56,17 +56,17 @@ function qa_db_user_create($email, $password, $handle, $level, $ip, $orgid=null)
 
 	if (QA_PASSWORD_HASH) {
 		qa_db_query_sub(
-			'INSERT INTO ^users (created, createip, email, passhash, level, handle, loggedin, loginip, orgid) ' .
-			'VALUES (NOW(), UNHEX($), $, $, #, $, NOW(), UNHEX($), $)',
-			$ipHex, $email, isset($password) ? password_hash($password, PASSWORD_BCRYPT) : null, (int)$level, $handle, $ipHex, $orgid
+			'INSERT INTO ^users (created, createip, email, passhash, level, handle, loggedin, loginip) ' .
+			'VALUES (NOW(), UNHEX($), $, $, #, $, NOW(), UNHEX($))',
+			$ipHex, $email, isset($password) ? password_hash($password, PASSWORD_BCRYPT) : null, (int)$level, $handle, $ipHex
 		);
 	} else {
 		$salt = isset($password) ? qa_random_alphanum(16) : null;
 
 		qa_db_query_sub(
-			'INSERT INTO ^users (created, createip, email, passsalt, passcheck, level, handle, loggedin, loginip, orgid) ' .
-			'VALUES (NOW(), UNHEX($), $, $, UNHEX($), #, $, NOW(), UNHEX($), $)',
-			$ipHex, $email, $salt, isset($password) ? qa_db_calc_passcheck($password, $salt) : null, (int)$level, $handle, $ipHex, $orgid
+			'INSERT INTO ^users (created, createip, email, passsalt, passcheck, level, handle, loggedin, loginip) ' .
+			'VALUES (NOW(), UNHEX($), $, $, UNHEX($), #, $, NOW(), UNHEX($))',
+			$ipHex, $email, $salt, isset($password) ? qa_db_calc_passcheck($password, $salt) : null, (int)$level, $handle, $ipHex
 		);
 	}
 
@@ -109,14 +109,6 @@ function qa_db_user_find_by_email($email)
 	return qa_db_read_all_values(qa_db_query_sub(
 		'SELECT userid FROM ^users WHERE email=$',
 		$email
-	));
-}
-
-function qa_db_user_find_by_orgid($orgid)
-{
-	return qa_db_read_all_values(qa_db_query_sub(
-		'SELECT userid FROM ^users WHERE orgid=$',
-		$orgid
 	));
 }
 
