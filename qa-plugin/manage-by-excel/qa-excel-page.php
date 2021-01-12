@@ -37,7 +37,7 @@ class qa_excel_page
 	{
 		return array(
 			array(
-				'title' => 'Example',
+				'title' => 'Excel upload plugin',
 				'request' => 'example-plugin-page',
 				'nav' => 'M', // 'M'=main, 'F'=footer, 'B'=before main, 'O'=opposite main, null=none
 			),
